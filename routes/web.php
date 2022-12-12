@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,10 +14,14 @@ use App\Http\Controllers\AuthController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/login', [AuthController::class, 'login']);
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/register', [AuthController::class, 'registering'])->name('registering');
 Route::get('/', function () {
     return view('layouts.master');
 });
-route::get('/register', function () {
-    return view('auth.register');
-});
-Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/auth/redirect/{provider}', function ($provider) {
+    return Socialite::driver($provider)->redirect();
+})->name('auth.redirect');
+Route::get('/auth/callback/{provider}', [AuthController::class, 'callback'])->name('auth.callback');
