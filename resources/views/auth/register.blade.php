@@ -70,22 +70,12 @@
                             <p class="text-muted font-16">Sign up using</p>
                             <ul class="social-list list-inline mt-3">
                                 <li class="list-inline-item">
-                                    <a href="javascript: void(0);"
-                                        class="social-list-item border-primary text-primary"><i
-                                            class="mdi mdi-facebook"></i></a>
+                                    <a href="{{ route('auth.redirect', 'github') }}" class="social-list-item border-info text-info"><i
+                                                class="mdi mdi-github-circle"></i></a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a href="javascript: void(0);" class="social-list-item border-danger text-danger"><i
-                                            class="mdi mdi-google"></i></a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="javascript: void(0);" class="social-list-item border-info text-info"><i
-                                            class="mdi mdi-twitter"></i></a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="javascript: void(0);"
-                                        class="social-list-item border-secondary text-secondary"><i
-                                            class="mdi mdi-github-circle"></i></a>
+                                    <a href="{{ route('auth.redirect', 'gitlab') }}" class="social-list-item border-info text-info"><i
+                                                class="mdi mdi-gitlab"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -94,7 +84,7 @@
 
                     <!-- Footer-->
                     <footer class="footer footer-alt">
-                        <p class="text-muted">Already have account? <a href="pages-login-2.html"
+                        <p class="text-muted">Already have account? <a href="{{ route('login') }}"
                                 class="text-muted ml-1"><b>Log In</b></a></p>
                     </footer>
 

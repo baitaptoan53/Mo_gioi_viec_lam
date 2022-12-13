@@ -30,7 +30,6 @@ class AuthController extends Controller
             'name'   => $data->getName(),
             'avatar' => $data->getAvatar(),
         ]);
-
         Auth::login($user);
 
         return redirect()->route('register');
