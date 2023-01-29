@@ -67,7 +67,7 @@
                         </div>
                         <!-- social-->
                         <div class="text-center mt-4">
-                            <p class="text-muted font-16">Sign up using</p>
+                            <p class="text-muted font-16">Sign in using</p>
                             <ul class="social-list list-inline mt-3">
                                 <li class="list-inline-item">
                                     <a href="{{ route('auth.redirect', 'github') }}" class="social-list-item border-info text-info"><i

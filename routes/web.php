@@ -20,9 +20,9 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'registering'])->name('registering');
 Route::get('/', function () {
     return view('layouts.master');
-});
+})->name('home');
 Route::get('/auth/redirect/{provider}', function ($provider) {
     return Socialite::driver($provider)->redirect();
-    
 })->name('auth.redirect');
 Route::get('/auth/callback/{provider}', [AuthController::class, 'callback'])->name('auth.callback');
+Route::get('/admin', [AuthController::class, 'callback'])->name('admin');

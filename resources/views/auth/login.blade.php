@@ -63,7 +63,7 @@
                                                 class="mdi mdi-gitlab"></i></a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a href="javascript: void(0);" class="social-list-item border-info text-info"><i
+                                    <a href="{{ route('auth.redirect', 'linkedin') }}" class="social-list-item border-info text-info"><i
                                                 class="mdi mdi-linkedin"></i></a>
                                 </li>
                             </ul>
