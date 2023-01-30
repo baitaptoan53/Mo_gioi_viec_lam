@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -13,13 +12,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            if (!Schema::hasColumn('posts', 'is_pinned')) {
-                Schema::table('posts', function (Blueprint $table) {
-                    $table->boolean('is_pinned')->default(false)->after('status');
-                });
-            }
-        });
+        if (!Schema::hasColumn('posts', 'is_pinned')) {
+            Schema::table('posts', function (Blueprint $table) {
+                $table
+                    ->boolean('is_pinned')
+                    ->default(false)
+                    ->after('status');
+            });
+        }
     }
 
     /**
@@ -29,12 +29,10 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            if (Schema::hasColumn('posts', 'is_pinned')) {
-                Schema::table('posts', function (Blueprint $table) {
-                    $table->boolean('is_pinned')->default(false)->after('status');
-                });
-            }
-        });
+        if (Schema::hasColumn('posts', 'is_pinned')) {
+            Schema::table('posts', function (Blueprint $table) {
+                $table->dropColumn('is_pinned');
+            });
+        }
     }
 };

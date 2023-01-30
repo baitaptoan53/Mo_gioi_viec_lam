@@ -8,6 +8,7 @@ use App\Models\Company;
 use App\Models\Languages;
 use Illuminate\Database\Seeder;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -25,6 +26,8 @@ class DatabaseSeeder extends Seeder
         // ]);
         Languages::factory(10)->create();
         Company::factory(10)->create();
-        $this->call(UserrSeeder::class);
+        $this->call([
+            UserSeeder::class,
+        ]);
     }
 }
