@@ -2,11 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Enums\UserRoleEnum;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class AuthMiddleware
+class AdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,11 +15,13 @@ class AuthMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, $guard = null)
+    public function handle(Request $request, Closure $next)
     {
-        if (Auth::guard($guard)->check() == false) {
+        // kiem tra da dang nhap hay chua 
+        if(!auth()->check() || auth()->user()->role!== UserRoleEnum::ADMIN)
+        {
             return redirect()->route('login');
         }
         return $next($request);
     }
-} 
+}

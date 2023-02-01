@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserRoleEnum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -26,6 +27,7 @@ class AuthController extends Controller
         $user = User::query()
             ->where('email', $data->getEmail())
             ->first();
+        $checkExist = true;
         // neu user chua co thi tao moi
         if (is_null($user)) {
             $user = User::create(
@@ -45,6 +47,10 @@ class AuthController extends Controller
             ]);
         }
         Auth::login($user);
+        if ($checkExist) {
+            $role = strtolower(UserRoleEnum::getKeys($user->role)[0]);
+            return redirect()->route("$role.welcome");
+        }
         // điều hướng
         return redirect()->route('home');
     }
