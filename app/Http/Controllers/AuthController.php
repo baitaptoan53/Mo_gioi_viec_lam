@@ -49,7 +49,7 @@ class AuthController extends Controller
         Auth::login($user);
         if ($checkExist) {
             $role = strtolower(UserRoleEnum::getKeys($user->role)[0]);
-            return redirect()->route("$role.welcome");
+            return redirect()->route("admin.welcome");
         }
         // điều hướng
         return redirect()->route('home');
