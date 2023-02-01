@@ -39,7 +39,7 @@
                                     <a href="javascript: void(0);" class="side-nav-link">
                                         <i class="uil-home-alt"></i>
                                         <span class="badge badge-success float-right">4</span>
-                                        <span> Dashboards </span>
+                                        <span> Users </span>
                                     </a>
                                     <a href="javascript: void(0);" class="side-nav-link">
                                         <i class="uil-home-alt"></i>
