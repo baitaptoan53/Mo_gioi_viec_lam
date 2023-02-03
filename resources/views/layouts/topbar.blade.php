@@ -168,12 +168,13 @@
             <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" href="#"
                 role="button" aria-haspopup="false" aria-expanded="false">
                 <span class="account-user-avatar">
-                    <img src="{{ auth()->user()->avatar ?? '' }}" alt="user-image" class="rounded-circle">
+                    <img src="{{ $data->avatar ?? 'https://gravatar.com/avatar/e9f5fc7c430f3718d404c1a3cd298876?s=200&d=mp&r=x' }}"
+                        alt="user-image" class="rounded-circle">
                 </span>
                 <span>
                     {{-- display name acc from data base --}}
-                    <span class="account-user-name"> {{ auth()->user()->name ??''}}</span>
-                    <span class="account-position">{{$role??''}}</span>
+                    <span class="account-user-name"> {{ $data->name ?? '' }}</span>
+                    <span class="account-position">{{ $data->role ?? '' }}</span>
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown"

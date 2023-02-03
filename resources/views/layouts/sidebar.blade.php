@@ -36,15 +36,10 @@
                                 <li class="side-nav-title side-nav-item">Navigation</li>
 
                                 <li class="side-nav-item">
-                                        <a href="{{ route('admin.users.index') }}" class="side-nav-link">
+                                    <a href="{{ route('admin.users.index') }}" class="side-nav-link">
                                         <i class="uil-home-alt"></i>
                                         <span class="badge badge-success float-right">4</span>
                                         <span> Users </span>
-                                    </a>
-                                    <a href="javascript: void(0);" class="side-nav-link">
-                                        <i class="uil-home-alt"></i>
-                                        <span class="badge badge-success float-right">4</span>
-                                        <span> Dashboards </span>
                                     </a>
                                 </li>
 
