@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 /*
@@ -18,9 +19,8 @@ use App\Models\User;
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'registering'])->name('registering');
-Route::get('/', function () {
-    return view('layouts.master');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('welcome');
+
 Route::get('/auth/redirect/{provider}', function ($provider) {
     return Socialite::driver($provider)->redirect();
 })->name('auth.redirect');

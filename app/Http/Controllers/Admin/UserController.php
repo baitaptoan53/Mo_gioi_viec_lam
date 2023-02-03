@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use \App\Models\User;
+use App\Models\User;
+use Illuminate\Support\Facades\View;
 class UserController extends Controller
 {
     private $model;
@@ -13,11 +14,16 @@ class UserController extends Controller
     public function __construct()
     {
         $this->model = User::query();
-        $this->table = $this->model->getTable();
+        $this->table = (new User())->getTable();
+        View::share('title', ucwords($this->table));
+        View::share('table', $this->table);
     }
     public function index()
     {
-        $data=$this->model->all();
-        return view("admin.$this->table.index", compact('data'));
+        $data = $this->model->get();
+        dd($data);
+        return view("admin.$this->table.index",[
+            'data' => $data
+        ]);
     }
 }
