@@ -8,6 +8,7 @@ use App\Models\Company;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\View;
+
 class UserController extends Controller
 {
     private $model;
@@ -20,12 +21,15 @@ class UserController extends Controller
         View::share('title', ucwords($this->table));
         View::share('table', $this->table);
     }
-    public function index(Request $request)
+    public function index(Request $request,)
     {
         $selectedRole = $request->get('role');
         $selectedCity = $request->get('city');
         $selectedCompany = $request->get('company');
-        $data = $this->model->get();
+        $query = $this->model
+            ->clone()
+            ->with('company:id,name')
+            ->latest();
         $roles = UserRoleEnum::asArray();
         $cities = $this->model
             ->clone()
@@ -33,10 +37,6 @@ class UserController extends Controller
             ->limit(10)
             ->pluck('city');
         $companies = Company::query()->get(['id', 'name']);
-        $query = $this->model
-            ->clone()
-            ->with('company:id,name')
-            ->latest();
         if (!empty($selectedRole) && $selectedRole !== 'All') {
             $query->where('role', $selectedRole);
         }

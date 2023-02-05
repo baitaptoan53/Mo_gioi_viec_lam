@@ -117,3 +117,12 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.select-filter').change(function() {
+                $('#form-filter').submit();
+            });
+        });
+    </script>
+@endpush
