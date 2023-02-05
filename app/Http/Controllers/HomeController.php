@@ -11,7 +11,7 @@ class HomeController extends Controller
     {
         $title = 'Tuyển dụng & Tìm việc làm';
         $user = auth()->user();
-        $role = strtolower(UserRoleEnum::getKeys($user->role)[0]);
-        return view('layouts.master', compact('title', 'role'));
+        // $role = strtolower(UserRoleEnum::getKeys($user->role)[0]);
+        return view('layouts.master', compact('title'));
     }
 }
