@@ -42,6 +42,13 @@
                                         <span> Users </span>
                                     </a>
                                 </li>
+                                <li class="side-nav-item">
+                                    <a href="{{ route('admin.posts.index') }}" class="side-nav-link">
+                                        <i class="uil-home-alt"></i>
+                                        <span class="badge badge-success float-right">4</span>
+                                        <span> Posts </span>
+                                    </a>
+                                </li>
 
 
                             </ul>

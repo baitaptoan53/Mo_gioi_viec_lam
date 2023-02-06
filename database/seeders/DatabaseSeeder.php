@@ -6,7 +6,9 @@ namespace Database\Seeders;
 
 use App\Models\Company;
 use App\Models\Languages;
+use App\Models\Posts;
 use Illuminate\Database\Seeder;
+
 
 
 class DatabaseSeeder extends Seeder
@@ -28,6 +30,7 @@ class DatabaseSeeder extends Seeder
         Company::factory(10)->create();
         $this->call([
             UserSeeder::class,
+            PostsSeeder::class,
         ]);
     }
 }
