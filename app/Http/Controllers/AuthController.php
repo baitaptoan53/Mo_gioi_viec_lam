@@ -24,22 +24,27 @@ class AuthController extends Controller
     public function callback($provider)
     {
         $data = Socialite::driver($provider)->user();
-        $user = User::firstOrCreate(
-            [
-                'email' => $data->getEmail(),
-            ],
-            [
-                'name' => $data->getName(),
-                'avatar' => $data->getAvatar(),
-            ],
-        );
+        $user = User::query()
+            ->where('email', $data->email)
+            ->first();
         $checkExist = true;
         Auth::login($user);
+        if (is_null($user)) {
+            $user        = new User();
+            $user->email = $data->getEmail();
+            $user->role  = UserRoleEnum::APPLICATION;
+            $checkExist  = false;
+        }
+
+        $user->name   = $data->getName();
+        $user->avatar = $data->getAvatar();
+
+        auth()->login($user, true);
+
         if ($checkExist) {
             $role = strtolower(UserRoleEnum::getKeys($user->role)[0]);
             return redirect()->route("$role.welcome");
         }
-        // điều hướng
         return redirect()->route('register');
     }
 
@@ -61,5 +66,7 @@ class AuthController extends Controller
 
             Auth::login($user);
         }
+        $role = strtolower(UserRoleEnum::getKeys($user->role)[0]);
+        return redirect()->route("$role.welcome");
     }
 }

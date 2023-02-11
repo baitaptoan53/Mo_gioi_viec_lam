@@ -64,10 +64,10 @@
     <!-- END wrapper -->
     <!-- bundle -->
 
-    
-    <script src="{{ asset('js/vendor.min.js') }}"></script>
+
     <script src="{{ asset('js/app.min.js') }}"></script>
-    @stack('scripts')
+    <script src="{{ asset('js/vendor.min.js') }}"></script>
+    <script src="{{ asset('js/helper.js') }}"></script>
+    @stack('js')
 </body>
 </html>
-

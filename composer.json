@@ -8,12 +8,14 @@
         "php": "^8.0.2",
         "bensampo/laravel-enum": "^6.2",
         "buihuycuong/vnfaker": "dev-master",
+        "cviebrock/eloquent-sluggable": "^9.0",
         "doctrine/dbal": "^3.5",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/socialite": "^5.5",
-        "laravel/tinker": "^2.7"
+        "laravel/tinker": "^2.7",
+        "maatwebsite/excel": "^3.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",

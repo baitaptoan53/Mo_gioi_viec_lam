@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\PostController as ControllersPostController;
 
 Route::get('/', function () {
     return view('layouts.master');
@@ -26,7 +27,7 @@ Route::group(
     ],
     function () {
         Route::get('/', [PostController::class, 'index'])->name('index');
-        Route::get('/{post}', [PostController::class, 'show'])->name('show');
-        Route::delete('/{post}', [PostController::class, 'destroy'])->name('destroy');
-    },
+        Route::get('/create', [PostController::class, 'create'])->name('create');
+        Route::post('/import-csv',[ControllersPostController::class,'importCsv'])->name('import-csv');
+    }
 );

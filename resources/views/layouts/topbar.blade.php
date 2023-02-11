@@ -168,7 +168,7 @@
             <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" href="#"
                 role="button" aria-haspopup="false" aria-expanded="false">
                 <span class="account-user-avatar">
-                    <img src="{{ $data->avatar ?? 'https://gravatar.com/avatar/e9f5fc7c430f3718d404c1a3cd298876?s=200&d=mp&r=x' }}"
+                    <img src="{{ auth()->user()->avatar ?? 'https://gravatar.com/avatar/e9f5fc7c430f3718d404c1a3cd298876?s=200&d=mp&r=x' }}"
                         alt="user-image" class="rounded-circle">
                 </span>
                 <span>
