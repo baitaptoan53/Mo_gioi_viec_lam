@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Enums\FileTypeEnum;
+use App\Enums\PostCurrencySalaryEnum;
+use App\Enums\PostStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -24,5 +27,13 @@ class Posts extends Model
                 'source' => 'job_title'
             ]
         ];
+    }
+    public function getCurrencySalaryCodeArtibute() : string
+    {
+        return PostCurrencySalaryEnum::getKey($this->currency_salary);
+    }
+    public function getPostStatusAttribute() : string
+    {
+        return PostStatusEnum::getKey($this->status);
     }
 }

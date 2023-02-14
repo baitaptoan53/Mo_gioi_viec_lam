@@ -12,6 +12,10 @@
                     </label>
                     <input type="file" name="csv" id="csv" class="d-none"
                         accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                    <nav class="float-right">
+                        <ul class="pagination pagination-rounded mb-0" id="pagination">
+                        </ul>
+                    </nav>
                 </div>
                 <div class="card-body">
                     <table class="table table-striped" id="table-data">
@@ -39,6 +43,16 @@
 @push('js')
     <script>
         $(document).ready(function() {
+            $.ajax({
+                url: '{{ route('api.posts') }}',
+                datatype: 'json',
+                success: function() {
+                    console.log(response);
+                },
+                error: function(response) {
+
+                }
+            })
             $("#csv").change(function(event) {
                 var formData = new FormData();
                 formData.append('file', $(this)[0].files[0]);
@@ -52,7 +66,7 @@
                     cache: false,
                     contentType: false,
                     processData: false,
-                    success: function(response) {
+                    success: function() {
                         $.toast({
                             heading: 'Import Success',
                             text: 'Your data have been imported',
@@ -65,7 +79,7 @@
 
                     }
                 });
-            });
-        });
+            })
+        })
     </script>
 @endpush

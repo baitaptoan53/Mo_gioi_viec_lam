@@ -14,6 +14,12 @@ class PostController extends Controller
     }
     public function index(Request $request)
     {
-        return $this->model->paginate();
+        $data = $this->model->paginate();
+        // append curency_salary 
+        foreach ($data as $item) {
+            $item->currency_salary = $item->currency_salary_code;
+            // $item->append('currency_salary_code');
+        }
+        return $data;
     }
 }

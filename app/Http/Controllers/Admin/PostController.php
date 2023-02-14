@@ -28,11 +28,11 @@ class PostController extends Controller
     }
     public function create(Request $request)
     {
-        $company= Company::query()->get();
-        return view('admin.posts.create',compact('company'));
+        $company = Company::query()->get();
+        return view('admin.posts.create', compact('company'));
     }
     public function importCsv(Request $request)
     {
         Excel::import(new PostImport, $request->file('file'));
     }
-} 
+}
