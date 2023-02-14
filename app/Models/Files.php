@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Files extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'post_id',
+        'link',
+        'type',
+    ];
+    // timestamp
+    public $timestamps = false;
 }

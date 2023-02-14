@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
+
 class Posts extends Model
 {
     use HasFactory;
@@ -15,11 +16,12 @@ class Posts extends Model
         'city',
         'status',
     ];
-    function sluggable()
+    // slugable dùng để tạo slug từ job_title
+    function sluggable(): array
     {
         return [
             'slug' => [
-                'source' => 'title'
+                'source' => 'job_title'
             ]
         ];
     }
