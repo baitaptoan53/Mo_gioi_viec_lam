@@ -13,6 +13,6 @@ use BenSampo\Enum\Enum;
  */
 final class PostCurrencySalaryEnum extends Enum
 {
-    const VND = 0;
-    const DONALS = 1;
+    public const VND = "1";
+    public const USD = "2";
 }
