@@ -28,11 +28,11 @@ class Posts extends Model
             ]
         ];
     }
-    public function getCurrencySalaryCodeArtibute() : string
+    public function getCurrencySalaryCodeArtibute()
     {
         return PostCurrencySalaryEnum::getKey($this->currency_salary);
     }
-    public function getPostStatusAttribute() : string
+    public function getStatusNameAttribute() 
     {
         return PostStatusEnum::getKey($this->status);
     }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Posts;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class PostController extends Controller
 {
@@ -12,14 +12,19 @@ class PostController extends Controller
     {
         $this->model = Posts::query();
     }
-    public function index(Request $request)
+    public function index(): JsonResponse
     {
         $data = $this->model->paginate();
-        // append curency_salary 
         foreach ($data as $item) {
             $item->currency_salary = $item->currency_salary_code;
+            $item->status = $item->status_name;
+            // append curency_salary
             // $item->append('currency_salary_code');
         }
-        return $data;
+        return response()->json([
+            "success" => true,
+            "data" => $data->getCollection(),
+            "pagination" => $data->linkCollection(),
+        ]);
     }
 }

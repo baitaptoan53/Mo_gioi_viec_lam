@@ -46,13 +46,44 @@
             $.ajax({
                 url: '{{ route('api.posts') }}',
                 datatype: 'json',
-                success: function() {
-                    console.log(response);
+                data: {page: {{ request()->get('page') ?? 1 }} },
+                success: function(response) {
+                    response.data.forEach(function(each) {
+                        let location = each.district + ' - ' + each.city;
+                        let remotable = each.remotable ? 'x' : '';
+                        let is_partime = each.is_partime ? 'x' : '';
+                        let range_salary = (each.min_salary && each.max_salary) ? each
+                            .min_salary + '-' + each.max_salary : '';
+                        let range_date = (each.start_date && each.end_date) ? each.start_date +
+                            '-' + each.end_date : '';
+                        let is_pinned = each.is_pinned ? 'x' : '';
+                        let created_at = convertDateToDateTime(each.created_at);
+                        $('#table-data').append($('<tr>')
+                            .append($('<td>').append(each.id))
+                            .append($('<td>').append(each.job_title))
+                            .append($('<td>').append(location))
+                            .append($('<td>').append(remotable))
+                            .append($('<td>').append(is_partime))
+                            .append($('<td>').append(range_salary))
+                            .append($('<td>').append(range_date))
+                            .append($('<td>').append(each.status))
+                            .append($('<td>').append(is_pinned))
+                            .append($('<td>').append(created_at))
+                        );
+                    });
+                    renderPagination(response.pagination);
                 },
                 error: function(response) {
 
                 }
             })
+            $(document).on('click', '#pagination > li > a', function (event) {
+                event.preventDefault();
+                let page = $(this).text();
+                let urlParams = new URLSearchParams(window.location.search);
+                urlParams.set('page', page);
+                window.location.search = urlParams;
+            });
             $("#csv").change(function(event) {
                 var formData = new FormData();
                 formData.append('file', $(this)[0].files[0]);
