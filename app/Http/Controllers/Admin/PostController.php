@@ -19,20 +19,24 @@ class PostController extends Controller
         $this->model = Posts::query();
         $this->table = (new Posts())->getTable();
 
-        View::share('title', ucwords($this->table));
-        View::share('table', $this->table);
+        View::share("title", ucwords($this->table));
+        View::share("table", $this->table);
     }
     public function index()
     {
-        return view('admin.posts.index');
+        return view("admin.posts.index");
     }
     public function create(Request $request)
     {
-        $company = Company::query()->get();
-        return view('admin.posts.create', compact('company'));
+        $copanies = Company::query()->get(["id", "name"]);
+        $selectedCompany = $request->get("company");
+        return view("admin.posts.create", [
+            "companies" => $copanies,
+            "selectedCompany" => $selectedCompany,
+        ]);
     }
     public function importCsv(Request $request)
     {
-        Excel::import(new PostImport, $request->file('file'));
+        Excel::import(new PostImport(), $request->file("file"));
     }
 }
