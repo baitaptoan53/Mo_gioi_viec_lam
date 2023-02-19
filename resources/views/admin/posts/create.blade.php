@@ -1,11 +1,16 @@
 @extends('layouts.master')
+@push('css')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endpush
 @section('content')
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
                     <form class="needs-validation" novalidate>
-                        <div class="form-group mb-3">
+                        <label>Company</label>
+                        <select class="form-group" name="company" id="select-company"></select>
+                        {{-- <div class="form-group mb-3">
                             <label for="city">Company</label>
                             <div class="col-5">
                                 <select class="form-control select-filter" name="company" id="company">
@@ -79,7 +84,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-primary" type="submit">Submit form</button>
+                        <button class="btn btn-primary" type="submit">Submit form</button> --}}
 
                     </form>
 
@@ -88,3 +93,13 @@
         </div>
     </div>
 @endsection
+@push('js')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#select-company").select2({
+                tags: true
+            });
+        });
+    </script>
+@endpush

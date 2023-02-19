@@ -7,6 +7,7 @@ use Illuminate\Http\JsonResponse;
 
 class PostController extends Controller
 {
+    use ResponseTrait;
     private $model;
     public function __construct()
     {
@@ -21,10 +22,9 @@ class PostController extends Controller
             // append curency_salary
             // $item->append('currency_salary_code');
         }
-        return response()->json([
-            "success" => true,
-            "data" => $data->getCollection(),
-            "pagination" => $data->linkCollection(),
-        ]);
+        return $this->errorResponse($data, "Success", 400);
+        $arr['data'] = $data->getCollection();
+        $arr['pagination']= $data->linkCollection();
+        return  $this->responseSuccess($data, "Success");
     }
 }

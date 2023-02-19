@@ -46,9 +46,11 @@
             $.ajax({
                 url: '{{ route('api.posts') }}',
                 datatype: 'json',
-                data: {page: {{ request()->get('page') ?? 1 }} },
+                data: {
+                    page: {{ request()->get('page') ?? 1 }}
+                },
                 success: function(response) {
-                    response.data.forEach(function(each) {
+                    response.data.data.forEach(function(each) {
                         let location = each.district + ' - ' + each.city;
                         let remotable = each.remotable ? 'x' : '';
                         let is_partime = each.is_partime ? 'x' : '';
@@ -71,13 +73,19 @@
                             .append($('<td>').append(created_at))
                         );
                     });
-                    renderPagination(response.pagination);
+                    renderPagination(response.data.pagination);
                 },
                 error: function(response) {
-
+                    $.toast({
+                        heading: 'Error',
+                        text:' Your data have not been loaded',
+                        showHideTransition: 'slide',
+                        position: 'bottom-right',
+                        icon: 'error'
+                        })
                 }
             })
-            $(document).on('click', '#pagination > li > a', function (event) {
+            $(document).on('click', '#pagination > li > a', function(event) {
                 event.preventDefault();
                 let page = $(this).text();
                 let urlParams = new URLSearchParams(window.location.search);
@@ -107,7 +115,13 @@
                         })
                     },
                     error: function(response) {
-
+                        $.toast({
+                            heading: 'Import Error',
+                            text:'Your data have not been imported',
+                            showHideTransition: 'slide',
+                            position: 'bottom-right',
+                            icon: 'error'
+                        })
                     }
                 });
             })
