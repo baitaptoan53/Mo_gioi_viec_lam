@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompaniesController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,3 +22,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('/posts',[PostController::class,'index'])->name('posts');
 Route::get('/companies',[CompaniesController::class,'index'])->name('companies');
+Route::get('/languages',[LanguageController::class,'index'])->name('languages');

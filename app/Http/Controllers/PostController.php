@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Posts;
 use Illuminate\Http\JsonResponse;
+use Termwind\Components\Dd;
 
 class PostController extends Controller
 {
@@ -22,9 +23,8 @@ class PostController extends Controller
             // append curency_salary
             // $item->append('currency_salary_code');
         }
-        return $this->errorResponse($data, "Success", 400);
         $arr['data'] = $data->getCollection();
-        $arr['pagination']= $data->linkCollection();
+        $arr['pagination'] = $data->linkCollection();
         return  $this->responseSuccess($data, "Success");
     }
 }

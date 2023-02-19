@@ -2,22 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Company;
-use Illuminate\Http\JsonResponse;
+use App\Models\Languages;
 use Illuminate\Http\Request;
 
-class CompaniesController extends Controller
+
+class LanguageController extends Controller
 {
-
-    private $model;
-    private string $table;
     use ResponseTrait;
-
+    private $model;
     public function __construct()
     {
-        $this->model = Company::query();
+        $this->model = Languages::query();
     }
-    public function index(Request $request): JsonResponse
+    public function index(Request $request)
     {
         $data = $this->model->where('name', 'like', '%' . $request->get('q'))->get();
         return $this->responseSuccess($data, "Success");
