@@ -27,13 +27,30 @@
                         <!-- Success Switch-->
                         <div class="mt-3 form-group">
                             <div> <label>Parttime</label></div>
-                            <input type="checkbox" id="switch3"  data-switch="success" />
+                            <input type="checkbox" id="switch3" data-switch="success" />
                             <label for="switch3" data-on-label="Yes" data-off-label="No"></label>
                         </div>
                         <div class="mt-3 form-group">
                             <div><label>Remove</label></div>
-                            <input type="checkbox" id="switch3"  data-switch="" />
+                            <input type="checkbox" id="switch3" data-switch="" />
                             <label for="switch3" data-on-label="Yes" data-off-label="No"></label>
+                        </div>
+                        <label for="from">From</label>
+                        <input type="text" id="from" name="from">
+                        <label for="to">to</label>
+                        <input type="text" id="to" name="to">
+                        <div class="form-group">
+                            <label for="curency">Cunrency Salary</label>
+                            <div class="col-5">
+                                <select class="form-control select-filter" name="curency" id="curency">
+                                    @foreach ($curencies as $curency => $value)
+                                        <option value="{{ $value }}"
+                                            @if ((string) $value === $selectCurency) selected @endif>
+                                            {{ $curency }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </form>
 
@@ -45,6 +62,37 @@
 @push('js')
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
+        $(function() {
+            var dateFormat = "mm/dd/yy",
+                from = $("#from")
+                .datepicker({
+                    defaultDate: "+1w",
+                    changeMonth: true,
+                    numberOfMonths: 3
+                })
+                .on("change", function() {
+                    to.datepicker("option", "minDate", getDate(this));
+                }),
+                to = $("#to").datepicker({
+                    defaultDate: "+1w",
+                    changeMonth: true,
+                    numberOfMonths: 3
+                })
+                .on("change", function() {
+                    from.datepicker("option", "maxDate", getDate(this));
+                });
+
+            function getDate(element) {
+                var date;
+                try {
+                    date = $.datepicker.parseDate(dateFormat, element.value);
+                } catch (error) {
+                    date = null;
+                }
+
+                return date;
+            }
+        });
         async function loadDistrict() {
             $('#select-district').empty();
             const path = $("#select-city option:selected").data('path');
@@ -120,7 +168,6 @@
             });
             $('#select-district').select2();
             loadDistrict();
-
         });
     </script>
 @endpush

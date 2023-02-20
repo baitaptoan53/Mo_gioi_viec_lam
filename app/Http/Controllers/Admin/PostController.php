@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\PostCurrencySalaryEnum;
 use App\Http\Controllers\Controller;
 use App\Imports\PostImport;
 use App\Models\Company;
@@ -30,9 +31,14 @@ class PostController extends Controller
     {
         $copanies = Company::query()->get(["id", "name"]);
         $selectedCompany = $request->get("company");
+        $selectCurency = $request->get("currency_salary");
+        $curencies = PostCurrencySalaryEnum::asArray();
         return view("admin.posts.create", [
+            "curencies"=>$curencies,
             "companies" => $copanies,
             "selectedCompany" => $selectedCompany,
+            "selectCurency" => $selectCurency,
+
         ]);
     }
     public function importCsv(Request $request)
