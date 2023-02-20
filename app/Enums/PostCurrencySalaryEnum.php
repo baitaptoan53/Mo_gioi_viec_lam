@@ -15,4 +15,8 @@ final class PostCurrencySalaryEnum extends Enum
 {
     public const VND = "1";
     public const USD = "2";
+    public const EUR = "3";
+    public const GBP = "4";
+    public const JPY = "5";
+    public const AUD = "6";
 }

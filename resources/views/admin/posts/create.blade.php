@@ -24,8 +24,17 @@
                             <label>District</label>
                             <select class="form-control" name="district" id='select-district'></select>
                         </div>
-
-
+                        <!-- Success Switch-->
+                        <div class="mt-3 form-group">
+                            <div> <label>Parttime</label></div>
+                            <input type="checkbox" id="switch3"  data-switch="success" />
+                            <label for="switch3" data-on-label="Yes" data-off-label="No"></label>
+                        </div>
+                        <div class="mt-3 form-group">
+                            <div><label>Remove</label></div>
+                            <input type="checkbox" id="switch3"  data-switch="" />
+                            <label for="switch3" data-on-label="Yes" data-off-label="No"></label>
+                        </div>
                     </form>
 
                 </div>
