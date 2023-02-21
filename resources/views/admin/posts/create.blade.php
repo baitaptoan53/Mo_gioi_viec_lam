@@ -35,10 +35,15 @@
                             <input type="checkbox" id="switch3" data-switch="" />
                             <label for="switch3" data-on-label="Yes" data-off-label="No"></label>
                         </div>
-                        <label for="from">From</label>
-                        <input type="text" id="from" name="from">
-                        <label for="to">to</label>
-                        <input type="text" id="to" name="to">
+                        <div class="col-md-4">
+                            <div class="input-group input-daterange">
+                                <input type="text" name="from_date_alt" id="from_date_alt"
+                                    class="form-control datepicker" placeholder="Start date" value="">
+                                <span class="input-group-addon">to</span>
+                                <input type="text" name="to_date_alt" id="to_date_alt" class="form-control datepicker"
+                                    placeholder="End date" value="">
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="curency">Cunrency Salary</label>
                             <div class="col-5">
@@ -53,7 +58,6 @@
                             </div>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
@@ -62,6 +66,14 @@
 @push('js')
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
+        var nowDate = new Date();
+        var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+
+        $(".datepicker").datepicker({
+            format: 'yyyy-mm-dd',
+            startDate: today,
+            autoclose: true
+        });
         $(function() {
             var dateFormat = "mm/dd/yy",
                 from = $("#from")
@@ -107,7 +119,6 @@
                 }
             })
         }
-
         $(document).ready(async function() {
             $("#select-company").select2({
                 tags: true,
