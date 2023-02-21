@@ -17,6 +17,10 @@
                             <select class="form-control" multiple name="language" id='select-language'></select>
                         </div>
                         <div class="form-group">
+                            <label>Requirement</label>
+                            <textarea name="requirement" class="form-control" cols="40"></textarea>
+                        </div>
+                        <div class="form-group">
                             <label>City</label>
                             <select class="form-control" name="city" id='select-city'></select>
                         </div>
@@ -36,15 +40,10 @@
                             <label for="switch3" data-on-label="Yes" data-off-label="No"></label>
                         </div>
                         <div class="col-md-4">
-                            <div class="input-group input-daterange">
-                                <input type="text" name="from_date_alt" id="from_date_alt"
-                                    class="form-control datepicker" placeholder="Start date" value="">
-                                <span class="input-group-addon">to</span>
-                                <input type="text" name="to_date_alt" id="to_date_alt" class="form-control datepicker"
-                                    placeholder="End date" value="">
-                            </div>
-                        </div>
-                        <div class="form-group">
+                            <span class="mb-4">Min salary</span>
+                            <input type="number" name="max_salary" class="form-control">
+                            <span class="mb-4">Max salary</span>
+                            <input type="number" name="max_salary" class="form-control">
                             <label for="curency">Cunrency Salary</label>
                             <div class="col-5">
                                 <select class="form-control select-filter" name="curency" id="curency">
@@ -55,6 +54,16 @@
                                         </option>
                                     @endforeach
                                 </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="mb-4">Range date</span>
+                            <div class="input-group input-daterange">
+                                <input type="text" name="from_date_alt" id="from_date_alt"
+                                    class="form-control datepicker" placeholder="Start date" value="">
+                                <span class="input-group-addon">to</span>
+                                <input type="text" name="to_date_alt" id="to_date_alt" class="form-control datepicker"
+                                    placeholder="End date" value="">
                             </div>
                         </div>
                     </form>
@@ -70,40 +79,9 @@
         var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
 
         $(".datepicker").datepicker({
-            format: 'yyyy-mm-dd',
+            format: 'dd-mm-yyyy',
             startDate: today,
             autoclose: true
-        });
-        $(function() {
-            var dateFormat = "mm/dd/yy",
-                from = $("#from")
-                .datepicker({
-                    defaultDate: "+1w",
-                    changeMonth: true,
-                    numberOfMonths: 3
-                })
-                .on("change", function() {
-                    to.datepicker("option", "minDate", getDate(this));
-                }),
-                to = $("#to").datepicker({
-                    defaultDate: "+1w",
-                    changeMonth: true,
-                    numberOfMonths: 3
-                })
-                .on("change", function() {
-                    from.datepicker("option", "maxDate", getDate(this));
-                });
-
-            function getDate(element) {
-                var date;
-                try {
-                    date = $.datepicker.parseDate(dateFormat, element.value);
-                } catch (error) {
-                    date = null;
-                }
-
-                return date;
-            }
         });
         async function loadDistrict() {
             $('#select-district').empty();
