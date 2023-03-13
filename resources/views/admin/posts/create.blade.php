@@ -66,6 +66,9 @@
                                     placeholder="End date" value="">
                             </div>
                         </div>
+                        <div class="col-md-4 mb-2">
+                            <button name="submit" class="submit">Submit</button>
+                        </div>
                     </form>
                 </div>
             </div>

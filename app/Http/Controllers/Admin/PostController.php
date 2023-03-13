@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Maatwebsite\Excel\Facades\Excel;
 
+
 class PostController extends Controller
 {
     private string $table;
@@ -38,6 +39,8 @@ class PostController extends Controller
             "companies" => $copanies,
             "selectedCompany" => $selectedCompany,
             "selectCurency" => $selectCurency,
+            
+
 
         ]);
     }
