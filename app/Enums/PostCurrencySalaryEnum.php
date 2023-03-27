@@ -19,4 +19,15 @@ final class PostCurrencySalaryEnum extends Enum
     public const GBP = "4";
     public const JPY = "5";
     public const AUD = "6";
+    public function getlocationByValues($id) 
+    {
+        $location = [
+            self::VND => "VND",
+            self::USD => "USD",
+            self::EUR => "EUR",
+            self::GBP => "GBP",
+            self::JPY => "JPY",
+            self::AUD => "AUD",
+        ];
+    }
 }

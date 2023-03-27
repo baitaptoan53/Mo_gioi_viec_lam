@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form class="needs-validation" novalidate>
+                    <form class="needs-validation" action="posts.store" novalidate>
                         <div class="form-group">
                             <label>Company</label>
                             <select class="form-control" name="company" id='select-company'></select>
@@ -36,12 +36,12 @@
                         </div>
                         <div class="mt-3 form-group">
                             <div><label>Remove</label></div>
-                            <input type="checkbox" id="switch3" data-switch="" />
+                            <input type="checkbox" id="switch3" name="remove" data-switch="" />
                             <label for="switch3" data-on-label="Yes" data-off-label="No"></label>
                         </div>
                         <div class="col-md-4">
                             <span class="mb-4">Min salary</span>
-                            <input type="number" name="max_salary" class="form-control">
+                            <input type="number" name="min_salary" class="form-control">
                             <span class="mb-4">Max salary</span>
                             <input type="number" name="max_salary" class="form-control">
                             <label for="curency">Cunrency Salary</label>

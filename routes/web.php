@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\Admin\PostController;
+use App\Models\Posts;
 use App\Models\User;
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +28,9 @@ Route::get('/auth/redirect/{provider}', function ($provider) {
 })->name('auth.redirect');
 Route::get('/auth/callback/{provider}', [AuthController::class, 'callback'])->name('auth.callback');
 Route::get('/admin', [AuthController::class, 'callback'])->name('admin');
+Route::get('/test',function(){
+    return view('components.post',[
+        'title'=>'test',	
+        'languages'=>'test',
+    ]);
+});
